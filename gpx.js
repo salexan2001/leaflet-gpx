@@ -386,14 +386,16 @@ L.GPX = L.FeatureGroup.extend({
           continue;
         }
 
-        var marker = new L.Marker(ll, {
-          clickable: options.marker_options.clickable,
-          title: name,
-          icon: symIcon
-        });
-        marker.bindPopup("<b>" + name + "</b>" + (desc.length > 0 ? '<br>' + desc : '')).openPopup();
-        this.fire('addpoint', { point: marker, point_type: 'waypoint', element: el[i] });
-        layers.push(marker);
+          if (symIcon.length > 0) {
+              var marker = new L.Marker(ll, {
+                  clickable: options.marker_options.clickable,
+                  title: name,
+                  icon: symIcon
+              });
+              marker.bindPopup("<b>" + name + "</b>" + (desc.length > 0 ? '<br>' + desc : '')).openPopup();
+              this.fire('addpoint', { point: marker, point_type: 'waypoint', element: el[i] });
+              layers.push(marker);
+          }
       }
     }
 
